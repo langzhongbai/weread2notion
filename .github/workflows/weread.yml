@@ -5,9 +5,6 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
 jobs:
   sync:
     name: Sync
@@ -24,12 +21,12 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # 已经默认使用 Node.js 20
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4  # 已经默认使用 Node.js 20
         with:
-          python-version: 3.11
+          python-version: 3.11  # 使用最新的 Python 版本
 
       - name: Install dependencies
         run: |
@@ -55,3 +52,4 @@ jobs:
           git add .
           git commit -m 'add new cover' || echo "nothing to commit"
           git push || echo "nothing to push"
+
